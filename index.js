@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const host = 'api.worldweatheronline.com';
-const wwoApiKey = "";
+const wwoApiKey = 59697;
 const app = express();
 
 app.use(bodyParser.json());
@@ -36,7 +36,7 @@ app.post('/', (req,res)=> {
 
 function callWeatherApi(city) {
 	return new Promise((resolve,reject) =>{
-		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey + '&date=' + '';
+		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey;
 		 http.get({host: host, path: path}, (res) => {
       let body = ''; // var to store the response chunks
       res.on('data', (d) => { body += d; }); // store each response chunk
