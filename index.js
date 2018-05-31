@@ -15,9 +15,9 @@ app.post('/', (req,res)=> {
 	}
 }) ;
 
-app.listen(process.env.port || 8080 , function(err){
+app.listen(process.env.PORT || 8080 , function(err){
 	if(err){
 		throw err;
 	}
-	console.log('Server started on Port : ' + process.env.port);
+	console.log('Server started on Port : ' + process.env.PORT);
 });
