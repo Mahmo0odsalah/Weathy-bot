@@ -8,10 +8,10 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/', (req,res)=> {
-	res.set({'Content-Type':'application/json'});
+	res.set('Content-type','application/json');
 	var body = req.body;
 	let city = body.queryResult.parameters['geo-city'];
-	res.json({'fullfilment' : city});
+	res.json({'fulfillmentText' : city});
 	}) ;
 
 app.listen(process.env.PORT || 8080 , function(err){
