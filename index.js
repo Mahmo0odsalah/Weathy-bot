@@ -36,7 +36,7 @@ app.post('/', (req,res)=> {
 
 function callWeatherApi(city) {
 	return new Promise((resolve,reject) =>{
-		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' + encodeURIComponent(city);
+		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey + '&date=' + '';
 		 http.get({host: host, path: path}, (res) => {
       let body = ''; // var to store the response chunks
       res.on('data', (d) => { body += d; }); // store each response chunk
