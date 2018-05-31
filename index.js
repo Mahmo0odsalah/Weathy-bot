@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(bodyParser.JSON({extended:false}));
+app.use(bodyParser.json());
 
 app.post('/', (req,res)=> {
 	var body = req.body;
