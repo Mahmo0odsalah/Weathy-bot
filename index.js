@@ -9,11 +9,9 @@ app.use(bodyParser.json());
 
 app.post('/', (req,res)=> {
 	var body = req.body;
-	if(body.queryResult.parameters['geo-city']){
-		let city = body.queryResult.parameters['geo-city'];
-		res.json({'fullfilment' : city});
-	}
-}) ;
+	let city = body.queryResult.parameters['geo-city'];
+	res.json({'fullfilment' : city});
+	}) ;
 
 app.listen(process.env.PORT || 8080 , function(err){
 	if(err){
