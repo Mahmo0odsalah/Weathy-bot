@@ -9,9 +9,7 @@ const app = express();
 
 app.post('/', (req,res)=> {
 	const body = req.body;
-	if(body.queryResult.parameters['geo-city']){
-		let city = body.queryResult.parameters['geo-city'];
-		res.json({'fullfilment' : city});
+	res.json({'fullfilment' : body});
 	}
 }) ;
 
