@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-//app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.JSON({extended:false}));
 
 app.post('/', (req,res)=> {
-	const body = req.body;
-	res.json({'fullfilment' : body});
+	var body = req.body;
+	if(body.queryResult.parameters['geo-city']){
+		let city = body.queryResult.parameters['geo-city'];
+		res.json({'fullfilment' : city});
 	}
 }) ;
 
