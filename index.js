@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.post('/', (req,res)=> {
-	const body = req.body;
+	var body = req.body.Body;
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
 		res.json({'fullfilment' : city});
