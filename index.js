@@ -12,26 +12,29 @@ app.use(bodyParser.json());
 app.post('/', (req,res)=> {
 	res.set('Content-type','application/json');
 	var body = req.body;
+	var good = false;
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
 		q = encodeURIComponent(city);
+		good = true;
 	}
 	if(body.queryResult.parameters['Latitude']){
 		const lat = body.queryResult.parameters['Latitude'];
 		const long = body.queryResult.parameters['Longitude'];
-		var good = check(lat) && check(long);
-		if(good){
-			q = lat+','+long;
-		}
-		else
-			q = '';
-		}
-
+		good = check(lat) && check(long);
+		q = lat+','+long;
+	}	
+	if(good){
 		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
   		}).catch(() => {
     		res.json({ 'fulfillmentText': `Couldn't get the weather :(` });
 		});
+  	}
+  	else
+  	{
+  		res.json({'fulfillmentText': 'wrong Input'});
+  	}
 
 	
 	}) ;
@@ -39,7 +42,7 @@ app.post('/', (req,res)=> {
 function check(num){
 	if(num.endsWith('n') || num.endsWith('N') || num.endsWith('s')||num.endsWith('S')||num.endsWith('e')||num.endsWith('E') || num.endsWith('w')||num.endsWith('W'))
 	{
-		var x = num.substring(0,-2);
+		var x = num.substring(0,num.length-1);
 	}
 	else
 	{
