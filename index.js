@@ -14,29 +14,27 @@ app.post('/', (req,res)=> {
 	var body = req.body;
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
-		callWeatherApi(city).then((output) => {
+		let q = encodeURIComponent(city);
+	}
+	if(body.queryResult.parameters['Latitude']){
+		const lat = body.queryResult.parameters['Latitude'];
+		const long = body.queryResult.parameters['Longitude'];
+		let q = lat+','+long;
+		}
+
+		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
   		}).catch(() => {
     		res.json({ 'fulfillmentText': `Couldn't get the weather :(` });
 		});
-	}
 
-	if(body.queryResult.parameters['Latitude']){
-		const lat = body.queryResult.parameters['Latitude'];
-		const long = body.queryResult.parameters['Longitude'];
-
-		callWeatherApi(lat , long).then((ouput)=>{
-			res.json({ 'fulfillmentText': output });
-  		}).catch(() => {
-    		res.json({ 'fulfillmentText': `Couldn't get the weather :(` });
-		})
-		}
+	
 	}) ;
 
 
 function callWeatherApi(city) {
 	return new Promise((resolve,reject) =>{
-		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey;
+		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' +q + '&key=' + wwoApiKey;
 		 http.get({host: host, path: path}, (res) => {
       let body = ''; // var to store the response chunks
       res.on('data', (d) => { body += d; }); // store each response chunk
