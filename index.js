@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const host = 'api.worldweatheronline.com';
-const wwoApiKey = 59697;
+const wwoApiKey = ed7645cdb2cc401a8a490501180106;
 const app = express();
 
 app.use(bodyParser.json());
