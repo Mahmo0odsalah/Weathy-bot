@@ -19,7 +19,12 @@ app.post('/', (req,res)=> {
 	if(body.queryResult.parameters['Latitude']){
 		const lat = body.queryResult.parameters['Latitude'];
 		const long = body.queryResult.parameters['Longitude'];
-		q = lat+','+long;
+		var good = check(lat) && check(long);
+		if(good){
+			q = lat+','+long;
+		}
+		else
+			q = '';
 		}
 
 		callWeatherApi(q).then((output) => {
@@ -31,7 +36,22 @@ app.post('/', (req,res)=> {
 	
 	}) ;
 
-
+function check(num){
+	if(num.endsWith('n') || num.endsWith('N') || num.endsWith('s')||num.endsWith('S')||num.endsWith('e')||num.endsWith('E') || num.endsWith('w')||num.endsWith('W'))
+	{
+		var x = num.substring(0,-2);
+	}
+	else
+	{
+		x = num;
+	}
+	if(Number(num)== Nan)
+	{
+		return false;
+	}
+	else
+		return true;
+}
 function callWeatherApi(city) {
 	return new Promise((resolve,reject) =>{
 		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' +q + '&key=' + wwoApiKey;
