@@ -20,7 +20,7 @@ app.post('/', (req,res)=> {
 	}
 	if(body.queryResult.parameters['Latitude']){
 		const lat = body.queryResult.parameters['Latitude']['H']+'.'+body.queryResult.parameters['Latitude']['L'];
-		const long = body.queryResult.parameters['Longitude'['H']+'.'+body.queryResult.parameters['Longitude']['L'];
+		const long = body.queryResult.parameters['Longitude']['H']+'.'+body.queryResult.parameters['Longitude']['L'];
 		good = check(lat) && check(long);
 		q = lat+','+long;
 	}	
