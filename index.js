@@ -16,9 +16,9 @@ app.post('/', (req,res)=> {
 		let city = body.queryResult.parameters['geo-city'];
 		q = encodeURIComponent(city);
 	}
-	if(body.queryResult.parameters['Latitude']){
-		const lat = body.queryResult.parameters['Latitude'];
-		const long = body.queryResult.parameters['Longitude'];
+	if(body.queryResult.parameters['lat1']){
+		const lat = body.queryResult.parameters['lat1']+'.'+body.queryResult.parameters['lat2'];
+		const long = body.queryResult.parameters['long1']+'.'+body.queryResult.parameters['long2'];
 		q = lat+','+long;
 		}
 
