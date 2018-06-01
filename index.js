@@ -6,7 +6,7 @@ const http = require('http');
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'ed7645cdb2cc401a8a490501180106';
 const app = express();
-
+const q = '';
 app.use(bodyParser.json());
 
 app.post('/', (req,res)=> {
@@ -14,12 +14,12 @@ app.post('/', (req,res)=> {
 	var body = req.body;
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
-		let q = encodeURIComponent(city);
+		q = encodeURIComponent(city);
 	}
 	if(body.queryResult.parameters['Latitude']){
 		const lat = body.queryResult.parameters['Latitude'];
 		const long = body.queryResult.parameters['Longitude'];
-		let q = lat+','+long;
+		q = lat+','+long;
 		}
 
 		callWeatherApi(q).then((output) => {
