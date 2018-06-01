@@ -45,7 +45,7 @@ function check(num){
 	{
 		x = num;
 	}
-	if(Number(num)== Nan)
+	if(Number(num)== NaN)
 	{
 		return false;
 	}
