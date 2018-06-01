@@ -48,10 +48,8 @@ function callWeatherApi(city) {
 
         // Create response
         let output = `Current conditions in the ${location['type']} 
-        ${location['query']} are ${currentConditions} with a projected high of
-        ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
-        ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
-        ${forecast['date']}.`;
+        ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
+        ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
 
         // Resolve the promise with the output text
         console.log(output);
