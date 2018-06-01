@@ -6,7 +6,7 @@ const http = require('http');
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'ed7645cdb2cc401a8a490501180106';
 const app = express();
-const q = '';
+var q = '';
 app.use(bodyParser.json());
 
 app.post('/', (req,res)=> {
