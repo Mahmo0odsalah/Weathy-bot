@@ -22,8 +22,8 @@ app.post('/', (req,res)=> {
 		const lat = body.queryResult.parameters['Latitude']['Latitude']['number']+body.queryResult.parameters['Latitude']['direction'].toString();
 		const long = body.queryResult.parameters['Longitude']['Longitude']['number']+body.queryResult.parameters['Longitude']['direction'].toString();
 		good = true;
-		q = lat+','+long;
-		console.log(q);
+		q = convert(lat)+','+convert(long);
+		
 	}	
 	if(good){
 		callWeatherApi(q).then((output) => {
@@ -39,7 +39,16 @@ app.post('/', (req,res)=> {
 
 	
 	}) ;
-
+function convert(tude){
+	if (tude.endsWith('N') || tude.endsWith('E')){
+		return tude.substring(0,num.length-1);
+	}
+	else
+		if(tude.endsWith('S') || tude.endsWith('W'))
+			return tude.substring(0,num.length-1) * -1;
+		else
+			throw err;
+}
 function check(num){
 	if(num.endsWith('n') || num.endsWith('N') || num.endsWith('s')||num.endsWith('S')||num.endsWith('e')||num.endsWith('E') || num.endsWith('w')||num.endsWith('W'))
 	{
