@@ -41,11 +41,11 @@ app.post('/', (req,res)=> {
 	}) ;
 function convert(tude){
 	if (tude.endsWith('N') || tude.endsWith('E')){
-		return tude.substring(0,num.length-1);
+		return tude.substring(0,tude.length-1);
 	}
 	else
 		if(tude.endsWith('S') || tude.endsWith('W'))
-			return tude.substring(0,num.length-1) * -1;
+			return tude.substring(0,tude.length-1) * -1;
 		else
 			throw err;
 }
