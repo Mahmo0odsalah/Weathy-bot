@@ -21,7 +21,7 @@ app.post('/', (req,res)=> {
 	if(body.queryResult.parameters['Latitude']){
 		const lat = body.queryResult.parameters['Latitude']['Latitude']['number'];
 		const long = body.queryResult.parameters['Longitude']['Longitude']['number'];
-		good = check(lat) && check(long);
+		good = true;
 		q = lat+','+long;
 	}	
 	if(good){
