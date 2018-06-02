@@ -19,8 +19,8 @@ app.post('/', (req,res)=> {
 		good = true;
 	}
 	if(body.queryResult.parameters['Latitude']){
-		const lat = body.queryResult.parameters['Latitude']['Latitude']['number']+''+body.queryResult.parameters['Latitude']['Latitude']['direction'] ;
-		const long = body.queryResult.parameters['Longitude']['Longitude']['number']+''+body.queryResult.parameters['Longitude']['Longitude']['direction'];
+		const lat = body.queryResult.parameters['Latitude']['Latitude']['number']+body.queryResult.parameters['Latitude']['Latitude']['direction'].toString() ;
+		const long = body.queryResult.parameters['Longitude']['Longitude']['number']+body.queryResult.parameters['Longitude']['Longitude']['direction'].toString();
 		good = true;
 		q = lat+','+long;
 		console.log(q);
