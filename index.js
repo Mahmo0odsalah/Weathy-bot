@@ -66,6 +66,7 @@ function check(num){
 		return true;
 }
 function callWeatherApi(city) {
+	console.log(q);
 	return new Promise((resolve,reject) =>{
 		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' +q + '&key=' + wwoApiKey;
 		 http.get({host: host, path: path}, (res) => {
