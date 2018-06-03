@@ -86,9 +86,9 @@ function callWeatherApi(city) {
         ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
         ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
     }
-    catch(err e )
+    catch(err)
     {
-    	throw e;
+    	let output = "Weather not Available";
     }
         // Resolve the promise with the output text
         console.log(output);
