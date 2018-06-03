@@ -91,7 +91,7 @@ function callWeatherApi(city) {
     	let output = "Weather not Available";
     }
         // Resolve the promise with the output text
-        console.log(output);
+        //console.log(output);
         resolve(output);
       });
       res.on('error', (error) => {
