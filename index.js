@@ -74,6 +74,7 @@ function callWeatherApi(city) {
       res.on('data', (d) => { body += d; }); // store each response chunk
       res.on('end', () => {
         // After all the data has been received parse the JSON for desired data
+    try{
         let response = JSON.parse(body);
         let forecast = response['data']['weather'][0];
         let location = response['data']['request'][0];
@@ -84,7 +85,11 @@ function callWeatherApi(city) {
         let output = `Current conditions in the ${location['type']} 
         ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
         ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
-
+    }
+    catch(err e )
+    {
+    	throw e;
+    }
         // Resolve the promise with the output text
         console.log(output);
         resolve(output);
