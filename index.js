@@ -33,7 +33,10 @@ app.post('/', (req,res)=> {
 		callWeatherApi(q).then((output) => {
     		let responseJson = {};
     		//responseJson.fulfillmentText = output;
-    		responseJson.followupEventInput = {'name': 'how', 'parameters':output};
+    		responseJson.followupEventInput = {'name': 'how',
+    		'parameters':{
+    			'output':output
+    		}};
     		res.json(responseJson);
 /*    		res.json({ 'fulfillmentText': output ,
     			'followupEventInput':{
