@@ -26,7 +26,7 @@ app.post('/', (req,res)=> {
 		q = convert(lat)+','+convert(long);
 		
 	}	
-	if ( body.originalDetectIntentRequest.payload.data.postback.data.lat){
+	if (body.originalDetectIntentRequest&& body.originalDetectIntentRequest.payload && body.originalDetectIntentRequest.payload.data &&body.originalDetectIntentRequest.payload.data.postback && body.originalDetectIntentRequest.payload.data.postback.data && body.originalDetectIntentRequest.payload.data.postback.data.lat){
 			q = body.originalDetectIntentRequest.payload.data.postback.data.lat + ',' + body.originalDetectIntentRequest.payload.data.postback.data.long;
 		}
 	if(true){
