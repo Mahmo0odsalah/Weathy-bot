@@ -34,7 +34,7 @@ app.post('/', (req,res)=> {
 		q = convert(lat)+','+convert(long);
 		
 	}	
-	if(good){
+	if(true){
 		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
   		}).catch(() => {
