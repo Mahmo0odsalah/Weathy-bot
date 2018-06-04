@@ -13,15 +13,7 @@ app.post('/', (req,res)=> {
 	res.set('Content-type','application/json');
 	var body = req.body;
 	var good = false;
-	console.log(JSON.stringify(body.originalDetectIntentRequest));
-	//if(messagingevent.message.attachments)
-	//{
-		//console.log("I received an attachment");
-		//if(messagingevent.message.attachments[0].payload.url == undefined ||messagingevent.message.attachments[0].payload.url == '')
-		//{
-		//	q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
-		//}
-	//}
+
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
 		q = encodeURIComponent(city);
@@ -37,7 +29,6 @@ app.post('/', (req,res)=> {
 	if(true){
 		if ( q == ''){
 			q = body.originalDetectIntentRequest.payload.data.postback.data.lat + ',' + body.originalDetectIntentRequest.payload.data.postback.data.long;
-			console.log(q);
 		}
 		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
@@ -79,27 +70,22 @@ function check(num){
 		return true;
 }
 function callWeatherApi(city) {
-	console.log(q);
 	return new Promise((resolve,reject) =>{
 		let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +'&q=' +q + '&key=' + wwoApiKey;
 		 http.get({host: host, path: path}, (res) => {
-      let body = ''; // var to store the response chunks
-      res.on('data', (d) => { body += d; }); // store each response chunk
+      let body = '';
+      res.on('data', (d) => { body += d; });
       res.on('end', () => {
-        // After all the data has been received parse the JSON for desired data
+
         let response = JSON.parse(body);
         let forecast = response['data']['weather'][0];
         let location = response['data']['request'][0];
         let conditions = response['data']['current_condition'][0];
         let currentConditions = conditions['weatherDesc'][0]['value'];
 
-        // Create response
-        let output = `Current conditions in the ${location['type']} 
-        ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
+        let output = `Current conditions in the ${location['type']} ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
         ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
 
-        // Resolve the promise with the output text
-        console.log(output);
         resolve(output);
       });
       res.on('error', (error) => {
