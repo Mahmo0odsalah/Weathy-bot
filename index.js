@@ -15,6 +15,7 @@ app.post('/', (req,res)=> {
 	var good = false;
 	if(messagingevent.message.attachments)
 	{
+		console.log("I received an attachment");
 		if(messagingevent.message.attachments[0].payload.url == undefined ||messagingevent.message.attachments[0].payload.url == '')
 		{
 			q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
