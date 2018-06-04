@@ -31,13 +31,13 @@ app.post('/', (req,res)=> {
 			q = body.originalDetectIntentRequest.payload.data.postback.data.lat + ',' + body.originalDetectIntentRequest.payload.data.postback.data.long;
 		}
 		callWeatherApi(q).then((output) => {
-    		res.json({ 'fulfillmentText': output })
-    		res.json({'followupeventinput':{
-    				'name' :"how"
+    		res.json({ 'fulfillmentText': output ,
+    			'followupeventinput':{
+    				'name':'how'
     			}});
+    		
   		}).catch(() => {
     		res.json({ 'fulfillmentText': `Couldn't get the weather :(` });
-    		res.json();
 		});
   	}
   	else
