@@ -36,7 +36,7 @@ app.post('/', (req,res)=> {
 	}	
 	if(true){
 		if ( q == ''){
-			q = body.originalDetectIntentRequest.data.postback.data.lat , body.originalDetectIntentRequest.data.postback.data.long;
+			q = body.originalDetectIntentRequest.payload.data.postback.data.lat , body.originalDetectIntentRequest.payload.data.postback.data.long;
 		}
 		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
