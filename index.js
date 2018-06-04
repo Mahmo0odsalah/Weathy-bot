@@ -37,7 +37,7 @@ app.post('/', (req,res)=> {
     			}});
   		}).catch(() => {
     		res.json({ 'fulfillmentText': `Couldn't get the weather :(` });
-    		res.json({'followupeventinput':});
+    		res.json();
 		});
   	}
   	else
