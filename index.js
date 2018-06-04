@@ -14,14 +14,14 @@ app.post('/', (req,res)=> {
 	var body = req.body;
 	var good = false;
 	console.log("I received a post request");
-	if(messagingevent.message.attachments)
-	{
-		console.log("I received an attachment");
-		if(messagingevent.message.attachments[0].payload.url == undefined ||messagingevent.message.attachments[0].payload.url == '')
-		{
-			q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
-		}
-	}
+	//if(messagingevent.message.attachments)
+	//{
+		//console.log("I received an attachment");
+		//if(messagingevent.message.attachments[0].payload.url == undefined ||messagingevent.message.attachments[0].payload.url == '')
+		//{
+		//	q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
+		//}
+	//}
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
 		q = encodeURIComponent(city);
