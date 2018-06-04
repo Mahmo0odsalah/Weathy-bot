@@ -13,6 +13,13 @@ app.post('/', (req,res)=> {
 	res.set('Content-type','application/json');
 	var body = req.body;
 	var good = false;
+	if(messagingevent.message.attachments)
+	{
+		if(messagingevent.message.attachments[0].payload.url == undefined ||messagingevent.message.attachments[0].payload.url == '')
+		{
+			q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
+		}
+	}
 	if(body.queryResult.parameters['geo-city']){
 		let city = body.queryResult.parameters['geo-city'];
 		q = encodeURIComponent(city);
