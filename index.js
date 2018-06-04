@@ -26,10 +26,11 @@ app.post('/', (req,res)=> {
 		q = convert(lat)+','+convert(long);
 		
 	}	
-	if(true){
-		if ( q == ''){
+	if ( body.originalDetectIntentRequest.payload.data.postback.data.lat){
 			q = body.originalDetectIntentRequest.payload.data.postback.data.lat + ',' + body.originalDetectIntentRequest.payload.data.postback.data.long;
 		}
+	if(true){
+		
 		callWeatherApi(q).then((output) => {
     		let responseJson = {};
     		//responseJson.fulfillmentText = output;
