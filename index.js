@@ -6,6 +6,11 @@ const http = require('http');
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'ed7645cdb2cc401a8a490501180106';
 const app = express();
+const apiai = require('apiai');
+const uuid = require('uuid');
+const request = require('request');
+const JSONbig = require('json-bigint');
+const async = require('async');
 var q = '';
 app.use(bodyParser.json());
 
@@ -35,6 +40,9 @@ app.post('/', (req,res)=> {
 		
 	}	
 	if(true){
+		if ( q == ''){
+			q = messagingEvent.message.attachments [0].payload.coordinates.lat , messagingEvent.message.attachments [0].payload.coordinates.long;
+		}
 		callWeatherApi(q).then((output) => {
     		res.json({ 'fulfillmentText': output });
   		}).catch(() => {
