@@ -13,7 +13,7 @@ app.post('/', (req,res)=> {
 	res.set('Content-type','application/json');
 	var body = req.body;
 	var good = false;
-	console.log("I received a post request");
+	console.log(JSON.stringify(body.originalDetectIntentRequest));
 	//if(messagingevent.message.attachments)
 	//{
 		//console.log("I received an attachment");
