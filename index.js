@@ -83,8 +83,7 @@ function callWeatherApi(city) {
         let conditions = response['data']['current_condition'][0];
         let currentConditions = conditions['weatherDesc'][0]['value'];
 
-        let output = `Current conditions in the ${location['type']} ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of
-        ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
+        let output = `Current conditions in the ${location['type']} ${location['query']} are ${currentConditions} with a temperature ${conditions['temp_C']}°C with a projected high of ${forecast['maxtempC']}°C and a low of ${forecast['mintempC']}°C on ${forecast['date']}.`;
 
         resolve(output);
       });
